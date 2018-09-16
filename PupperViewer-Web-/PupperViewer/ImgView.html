@@ -13,105 +13,22 @@ Author: Mathieu Lancaster
 </head>
 <body onload="getStory()">
 	<div id="pageDiv">
-
 		<div id="imgFrameDiv">
 
 			<h1>Flora: The Shelter Princess</h1>
-			<img id="imgStory" src="pup_imgs/intro.jpg"> <input id="prevPh"
-				type="button" value="Previous Photo" onclick="prevPhoto();" /> <input
-				id="nextPh" type="button" value="Next Photo" onclick="nextPhoto();" />
-
+			<img id="imgStory" src="pup_imgs/intro.jpg"> 
+			<audio controls autoplay id="musPlay" onended="changeSong()">
+				<source src="" type="audio/mpeg">
+			</audio>
+			<input id="prevPh" type="button" value="Previous Photo" onclick="prevPhoto();"></input> 
+			<input id="nextPh" type="button" value="Next Photo" onclick="nextPhoto();" ></input>
+			<textarea id="songInfo" readonly>Info about song...</textarea>
+			<a href="https://www.freemusicarchive.org" target="_blank">The Free Music Archive</a>
 			<div id="storyDiv">
 				<textarea id="textStory" readonly>This will be where the story is told</textarea>
 			</div>
-
 		</div>
 	</div>
-	<script>
-		/**
-		 * ImgView: JavaScript
-		 * Purpose: Loads Story file, and iterates through story, based on button clicks
-		 * Author: Mathieu Lancaster
-		 */
-
-		// DECLARATIONS
-		var intro = "Inspired by a true story!\n\nUse the 'Next' / 'Previous' buttons to read through this kid-friendly story of my favorite Shelter Pupper :D";
-		var storyName = "Pupper_Story.txt";
-		var storyIndex = 0;
-		var strStory = "";
-		var storyParts;
-		var imgParts = [ "intro", "pup_shelter", "pup_hero", "pup_bone",
-				"pup_scared", "pup_skeptical", "pup_bedHog", "pup_lounge",
-				"pup_legSit", "pup_math", "pup_destroyer", "pup_upClose",
-				"pup_nMe", "theEnd" ];
-		var textAreaEl = document.getElementById("textStory");
-		var imgEl = document.getElementById("imgStory");
-		var xhttp;
-
-		/*
-		* Function: getStory
-		* Purpose: sends xhttp request to pupProcess.php, to retreive contents of story text-file
-		*/
-		function getStory() {
-			xhttp = new XMLHttpRequest(); // <-- create request
-			
-			// Each time the request-state changes...
-			xhttp.onreadystatechange = function() {
-				
-				// readyState(4) = Operation complete, status(200) = request succesfull
-				if (this.readyState == 4 && this.status == 200) {
-					
-					strStory = xhttp.responseText; // <-- retrieve text from query
-					storyParts = strStory.split("<END>"); // <-- break string into array by '<END>' delimeter (was written into .txt file)
-					storyParts.unshift(intro); // <-- add intro portion
-
-					// for each string element in array...
-					for (var i = 0; i < storyParts.length; i++) {
-						storyParts[i] = storyParts[i].trim(); // <-- trim any leading/trailing white-spaces
-					}
-					textAreaEl.value = storyParts[0]; // <-- set opening window to first string (Intro)
-				}
-			}
-			xhttp.open("GET", "pupProcess.php?name=" + storyName, true); // <-- Open .php file, passing 'name' parameter to open file
-			xhttp.send(); // <-- sent request
-
-		}
-		
-		/*
-		* Function: nextPhoto
-		* Purpose: advances story to the next Image/Dialogue option, unless @ end of arrays (will do nothing)
-		*/
-		function nextPhoto() {
-			storyIndex++; // <-- increase index
-			
-			//if we've reached the end of the array...
-			if (storyIndex == storyParts.length) {
-				storyIndex--; // <-- decrement index to stay in-bounds
-			
-			//if another story-piece is available...
-			} else {
-				textAreaEl.value = storyParts[storyIndex]; // <-- change textArea to new dialogue
-				imgEl.src = "pup_imgs/" + imgParts[storyIndex] + ".jpg"; // <-- update image
-			}
-		}
-
-		/*
-		* Function: prevPhoto
-		* Purpose: moves story backwards, to the prior Image/Dialogue option, unless @ beginning of arrays (will do nothing)
-		*/
-		function prevPhoto() {
-			storyIndex--; // <-- decrement index
-			
-			// if we've moved before alloted array indices...
-			if (storyIndex < 0) {
-				storyIndex++; // <-- increment index to stay in-bounds
-				
-			// if a prior story-piece is available...
-			} else {
-				textAreaEl.value = storyParts[storyIndex]; // <-- change textArea to new dialogue
-				imgEl.src = "pup_imgs/" + imgParts[storyIndex] + ".jpg"; // <-- update image
-			}
-		}
-	</script>
+	<script src="playStory.js">	</script>
 </body>
 </html>
