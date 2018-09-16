@@ -1,5 +1,5 @@
 # PupperViewer-Web-
-Small web-client with a pup-related story!
+Purpose: Web-based client that makes use of HTML/CSS/JavaScript/PHP to tell a story about a dog; in children's book fashion
 
 NOTE: If you are using <b>Google Chrome</b>, You will need to either download a plugin, or start chrome with the proper flags to allow xmlHttpRequests (--allow-file-access-from-files). Without, program will lack functionality.
 
