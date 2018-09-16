@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/*
+Program: mystyle.css
+Purpose: Provides Styling decisions for PupperViewer program
+Author: Mathieu Lancaster
+*/
+h1 {
+	margin-bottom: 5px;
+	text-align: center;
+	font-size: 35pt;
+	color: Magenta;
+}
+
+input:hover {
+	border: 2px solid red;
+}
+input {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	height: 30px;
+	width: 150px;
+	font-size: 14pt;
+}
+
+#prevPh {
+	margin-left: 10px;
+	float: left;
+}
+
+#nextPh {
+	margin-right: 10px;
+	float: right;
+	
+}
+#pageDiv {
+	position: relative;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 1000px;
+	width: 1000px;
+	background-color: blue;
+}
+#imgFrameDiv {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 700px;
+	width: 600px;
+	padding: 5px;
+}
+
+#storyDiv {
+	height: 100px;
+	width: 600px;
+}
+
+
+#textStory {
+	height: 275px;
+	width: 100%;
+	font-family: Courier New; 
+	font-size: 16pt;
+	font-weight: bold;
+	background-color: lightblue;
+	resize: none;
+}
+img {
+	height: 500px;
+	width: 600px;
+	max-height: auto;	
+}
+
+body {
+	background-color: black;
+}
